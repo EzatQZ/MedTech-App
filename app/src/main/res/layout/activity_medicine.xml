@@ -1,0 +1,123 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginVertical="16dp"
+    android:layout_marginHorizontal="32dp"
+    tools:context=".MainActivity">
+
+
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/healthcare" />
+
+    <TextView
+        android:id="@+id/medicine_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_logo"
+        android:layout_marginTop="32dp"
+        android:text="Medicine Inventory"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- View Medicine button -->
+    <Button
+        android:id="@+id/view_medicine_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/medicine_title"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_button"
+        android:text="View Medicine"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <!-- Add Medicine form -->
+    <TextView
+        android:id="@+id/add_medicine_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_medicine_button"
+        android:layout_marginTop="32dp"
+        android:text="Add/Update Medicine"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/medicine_name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_medicine_title"
+        android:layout_marginTop="16dp"
+        android:hint="Medicine Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/medicine_quantity_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/medicine_name_input"
+        android:layout_marginTop="16dp"
+        android:hint="Quantity"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/medicine_price_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/medicine_quantity_input"
+        android:layout_marginTop="16dp"
+        android:hint="Price"
+        android:inputType="numberDecimal" />
+    <EditText
+        android:id="@+id/medicine_uid_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/medicine_price_input"
+        android:layout_marginTop="16dp"
+        android:hint="id"
+        android:inputType="numberDecimal" />
+
+
+    <Button
+        android:id="@+id/add_medicine_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/medicine_uid_input"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_button"
+        android:text="Add Medicine"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/empty_list_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_medicine_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="No Medicine Found"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/medicine_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

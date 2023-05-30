@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        tools:targetApi="31">
+        <activity
+            android:name=".Admin.ViewMedicine"
+            android:exported="false" />
+
+        <activity
+            android:name=".Admin.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.UsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.PharmacyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.MedicineActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.Admin"
+            android:exported="false" />
+        <activity
+            android:name=".Users.MedicineLocator"
+            android:exported="false" />
+        <activity
+            android:name=".Users.ContactDoctor"
+            android:exported="false" />
+        <activity
+            android:name=".Users.MyAppointments"
+            android:exported="false" />
+        <activity
+            android:name=".Users.MyPrescriptions"
+            android:exported="false" />
+        <activity
+            android:name=".Users.MyProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor.doctor"
+            android:exported="false" />
+        <activity
+            android:name=".Connecting.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Connecting.CreateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

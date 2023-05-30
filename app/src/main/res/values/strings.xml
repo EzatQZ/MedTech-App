@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Med-Tech</string>
+    <string name="medicine_quantity_label">Quantity:</string>
+    <string name="medicine_price_label">Price:</string>
+    <string name="medicine_expiration_date_label">ExpirationDate:</string>
+</resources>

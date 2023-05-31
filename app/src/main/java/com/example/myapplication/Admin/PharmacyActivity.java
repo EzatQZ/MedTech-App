@@ -81,21 +81,6 @@ public class PharmacyActivity extends AppCompatActivity {
         // Get medicine list from database
         getMedicineList();
 
-        // Set add medicine button click listener
-        Button addMedicineButton = findViewById(R.id.add_medicine_button);
-        addMedicineButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String medicineName = medicineSpinner.getSelectedItem().toString();
-                if (!selectedMedicineNames.contains(medicineName)) {
-                    selectedMedicineNames.add(medicineName);
-                    Toast.makeText(PharmacyActivity.this, "Added " + medicineName + " to selected medicines", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(PharmacyActivity.this, "Medicine already added", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
         // Set add pharmacy button click listener
         Button addPharmacyButton = findViewById(R.id.add_pharmacy_button);
         addPharmacyButton.setOnClickListener(new View.OnClickListener() {

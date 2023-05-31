@@ -1,5 +1,4 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,11 +15,11 @@
         android:id="@+id/pharmacy_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/app_logo"
         android:padding="16dp"
         android:text="Add Pharmacy"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/app_logo" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/pharmacy_name_edit_text"
@@ -28,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/pharmacy_title"
         android:hint="Pharmacy Name"
-        android:padding="16dp"/>
+        android:padding="16dp" />
 
     <EditText
         android:id="@+id/pharmacy_address_edit_text"
@@ -36,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/pharmacy_name_edit_text"
         android:hint="Pharmacy Address"
-        android:padding="16dp"/>
+        android:padding="16dp" />
 
     <EditText
         android:id="@+id/pharmacy_manager_edit_text"
@@ -44,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/pharmacy_address_edit_text"
         android:hint="Pharmacy Manager"
-        android:padding="16dp"/>
+        android:padding="16dp" />
 
     <TextView
         android:id="@+id/medicine_title"
@@ -61,36 +60,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/medicine_title"
-        android:padding="16dp"/>
-
-    <EditText
-        android:id="@+id/medicine_quantity_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/medicine_spinner"
-        android:layout_marginTop="16dp"
-        android:hint="Quantity"
-        android:inputType="number"
-        android:padding="16dp"/>
-
-    <Button
-        android:id="@+id/add_medicine_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/medicine_quantity_edit_text"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="Add Medicine" />
+        android:minHeight="48dp"
+        android:padding="16dp" />
 
     <Button
         android:id="@+id/add_pharmacy_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/medicine_quantity_edit_text"
-        android:layout_marginTop="22dp"
+        android:layout_below="@+id/medicine_spinner"
+        android:layout_marginTop="27dp"
         android:layout_marginEnd="24dp"
-        android:layout_toStartOf="@id/add_medicine_button"
         android:text="Add Pharmacy" />
 
 </RelativeLayout>

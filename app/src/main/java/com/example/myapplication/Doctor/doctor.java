@@ -21,6 +21,8 @@ public class doctor extends AppCompatActivity {
     private Button settingsButton;
     private Button logoutButton;
 
+    private Button reviewsButton;
+
     private FirebaseAuth mAuth;
 
 
@@ -34,6 +36,7 @@ public class doctor extends AppCompatActivity {
         patientInquiriesButton = findViewById(R.id.patient_inquiries_button);
         settingsButton = findViewById(R.id.settings_button);
         logoutButton = findViewById(R.id.logout_button);
+        reviewsButton=findViewById(R.id.reviews_button);
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -50,6 +53,13 @@ public class doctor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(doctor.this, PatientInq.class);
+                startActivity(intent);
+            }
+        });
+        reviewsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(doctor.this, PatientReviews.class);
                 startActivity(intent);
             }
         });

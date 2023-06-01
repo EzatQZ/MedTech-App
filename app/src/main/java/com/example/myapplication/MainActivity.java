@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Declare the buttons
     private Button myPrescriptionsButton;
-    private Button myAppointmentsButton;
+
     private Button myProfileButton;
     private Button medicineLocatorButton;
     private Button contactADoctorButton;
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize the buttons
         myPrescriptionsButton = findViewById(R.id.my_prescriptions_button);
-        myAppointmentsButton = findViewById(R.id.my_appointments_button);
         myProfileButton = findViewById(R.id.my_profile_button);
         medicineLocatorButton = findViewById(R.id.medicine_locator_button);
         contactADoctorButton = findViewById(R.id.contact_a_doctor_button);
@@ -50,13 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myAppointmentsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyAppointments.class);
-                startActivity(intent);
-            }
-        });
+
 
         myProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override

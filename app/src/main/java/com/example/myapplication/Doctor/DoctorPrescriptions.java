@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Admin.Medicine;
@@ -23,10 +25,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class DoctorPrescriptions extends AppCompatActivity {
@@ -36,14 +42,17 @@ public class DoctorPrescriptions extends AppCompatActivity {
     private DatabaseReference medicinesRef;
 
     private Spinner userSpinner;
+    private Spinner medicineSpinner;
+    private EditText quantityEditText;
     private ListView medicineListView;
+    private Button addMedicineButton;
     private Button addPrescriptionButton;
+    private TextView totalPriceTextView;
 
     private User selectedUser;
-    private Map<String, Integer> selectedQuantities;
-    private double totalPrice;
     private ArrayAdapter<Medicine> medicineAdapter;
     private Map<Medicine, Integer> selectedMedicines;
+    private double totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +64,13 @@ public class DoctorPrescriptions extends AppCompatActivity {
         medicinesRef = FirebaseDatabase.getInstance().getReference("medicines");
 
         userSpinner = findViewById(R.id.user_spinner);
+        medicineSpinner = findViewById(R.id.medicine_spinner);
+        quantityEditText = findViewById(R.id.quantity_edit_text);
         medicineListView = findViewById(R.id.medicine_list_view);
+        addMedicineButton = findViewById(R.id.add_medicine_button);
         addPrescriptionButton = findViewById(R.id.add_prescription_button);
+        totalPriceTextView = findViewById(R.id.total_price_text_view);
 
-        selectedQuantities = new HashMap<>();
         selectedMedicines = new HashMap<>();
 
         loadUsers();
@@ -76,33 +88,16 @@ public class DoctorPrescriptions extends AppCompatActivity {
             }
         });
 
-        medicineListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        addMedicineButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Medicine selectedMedicine = medicineAdapter.getItem(position);
-                int quantity = selectedQuantities.get(selectedMedicine.getUid()) != null
-                        ? selectedQuantities.get(selectedMedicine.getUid()) : 0;
-                quantity++;
-                selectedQuantities.put(selectedMedicine.getUid(), quantity);
-                selectedMedicines.put(selectedMedicine, quantity);
-                totalPrice += selectedMedicine.getPrice();
-                updateMedicineList();
+            public void onClick(View v) {
+                addMedicine();
             }
         });
 
         addPrescriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedUser == null) {
-                    Toast.makeText(DoctorPrescriptions.this, "Please select a user", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (selectedMedicines.isEmpty()) {
-                    Toast.makeText(DoctorPrescriptions.this, "Please select at least one medicine", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 addPrescription();
             }
         });
@@ -143,9 +138,13 @@ public class DoctorPrescriptions extends AppCompatActivity {
                     medicineList.add(medicine);
                 }
 
+                // Sort the medicine list by name
+                Collections.sort(medicineList, (m1, m2) -> m1.getName().compareToIgnoreCase(m2.getName()));
+
                 medicineAdapter = new ArrayAdapter<>(DoctorPrescriptions.this,
-                        android.R.layout.simple_list_item_1, medicineList);
-                medicineListView.setAdapter(medicineAdapter);
+                        android.R.layout.simple_spinner_item, medicineList);
+                medicineAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                medicineSpinner.setAdapter(medicineAdapter);
             }
 
             @Override
@@ -155,29 +154,93 @@ public class DoctorPrescriptions extends AppCompatActivity {
         });
     }
 
-    private void updateMedicineList() {
-        medicineAdapter.notifyDataSetChanged();
+    private void addMedicine() {
+        Medicine selectedMedicine = (Medicine) medicineSpinner.getSelectedItem();
+        String quantityStr = quantityEditText.getText().toString().trim();
+
+        if (selectedMedicine == null || quantityStr.isEmpty()) {
+            Toast.makeText(DoctorPrescriptions.this, "Please select a medicine and enter a quantity", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int quantity = Integer.parseInt(quantityStr);
+        if (quantity <= 0) {
+            Toast.makeText(DoctorPrescriptions.this, "Quantity must be greater than zero", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        selectedMedicines.put(selectedMedicine, quantity);
+        updateMedicineList();
+
+        // Clear the input fields
+        medicineSpinner.setSelection(0);
+        quantityEditText.setText("");
     }
 
-    private void addPrescription() {
-        Prescription prescription = new Prescription(selectedUser);
+    private void updateMedicineList() {
+        List<String> medicineInfoList = new ArrayList<>();
+        double totalPrice = 0;
 
         for (Map.Entry<Medicine, Integer> entry : selectedMedicines.entrySet()) {
             Medicine medicine = entry.getKey();
             int quantity = entry.getValue();
-            prescription.addMedicine(medicine, quantity);
+            double medicinePrice = medicine.getPrice();
+
+            medicineInfoList.add(medicine.getName() + " x " + quantity);
+            totalPrice += (medicinePrice * quantity);
         }
 
-        prescription.setTotalPrice(totalPrice);
-        prescription.setPrescriptionDate(new Date().getTime());
+        ArrayAdapter<String> medicineInfoAdapter = new ArrayAdapter<>(DoctorPrescriptions.this,
+                android.R.layout.simple_list_item_1, medicineInfoList);
+        medicineListView.setAdapter(medicineInfoAdapter);
 
-        DatabaseReference prescriptionsRef = usersRef.child(selectedUser.getId()).child("prescriptions").push();
+        totalPriceTextView.setText(String.format(Locale.getDefault(), "%.2f", totalPrice));
+    }
+
+    private void addPrescription() {
+        if (selectedUser == null) {
+            Toast.makeText(DoctorPrescriptions.this, "Please select a user", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (selectedMedicines.isEmpty()) {
+            Toast.makeText(DoctorPrescriptions.this, "Please add at least one medicine", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        double totalPrice = Double.parseDouble(totalPriceTextView.getText().toString());
+
+        Prescription prescription = new Prescription(selectedUser);
+        prescription.getSelectedMedicines();
+        prescription.setTotalPrice(totalPrice);
+
+        // Set the prescription date in "yyyy-MM-dd" format
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String currentDate = dateFormat.format(new Date());
+        long currentTimeMillis = 0;
+
+        try {
+            Date date = dateFormat.parse(currentDate);
+            currentTimeMillis = date.getTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        prescription.setPrescriptionDate(currentTimeMillis);
+
+        DatabaseReference prescriptionsRef = FirebaseDatabase.getInstance().getReference("prescriptions").push();
         prescriptionsRef.setValue(prescription);
 
         Toast.makeText(DoctorPrescriptions.this, "Prescription added successfully", Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(DoctorPrescriptions.this, MyPrescriptions.class);
-        intent.putExtra("userId", selectedUser.getId());
-        startActivity(intent);
+        // Clear the selected medicines
+        selectedMedicines.clear();
+        updateMedicineList();
+
+        // Clear the input fields
+        userSpinner.setSelection(0);
+        medicineSpinner.setSelection(0);
+        quantityEditText.setText("");
     }
+
 }

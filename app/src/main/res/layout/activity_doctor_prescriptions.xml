@@ -29,26 +29,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_spinner"
         android:layout_marginTop="16dp"
-        android:text="Medicines:"
+        android:text="Medicine:"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_alignParentStart="true"
         android:layout_marginStart="16dp" />
 
-    <ListView
-        android:id="@+id/medicine_list_view"
+    <Spinner
+        android:id="@+id/medicine_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/medicine_label"
-        android:layout_marginTop="16dp"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
 
     <TextView
         android:id="@+id/quantity_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/medicine_list_view"
+        android:layout_below="@+id/medicine_spinner"
         android:layout_marginTop="16dp"
         android:text="Quantity:"
         android:textSize="20sp"
@@ -60,18 +60,19 @@
         android:id="@+id/quantity_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/medicine_list_view"
+        android:layout_below="@+id/medicine_spinner"
         android:layout_toEndOf="@id/quantity_label"
         android:layout_marginTop="16dp"
         android:inputType="number"
         android:ems="4"
         android:textSize="18sp" />
 
+
     <Button
         android:id="@+id/add_prescription_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/quantity_label"
+        android:layout_below="@+id/add_medicine_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="Add Prescription"
@@ -81,7 +82,7 @@
         android:id="@+id/total_price_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_prescription_button"
+        android:layout_below="@+id/quantity_edit_text"
         android:layout_marginTop="16dp"
         android:text="Total Price:"
         android:textSize="20sp"
@@ -93,10 +94,32 @@
         android:id="@+id/total_price_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_prescription_button"
+        android:layout_below="@+id/quantity_edit_text"
         android:layout_toEndOf="@id/total_price_label"
         android:layout_marginTop="16dp"
         android:text="0.00"
         android:textSize="18sp" />
+    <Button
+        android:id="@+id/add_medicine_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/total_price_text_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Add Medicine"
+        android:textSize="20sp" />
+
+    <ListView
+        android:id="@+id/medicine_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_prescription_button"
+        android:layout_marginTop="16dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
+
+
+
+
 
 </RelativeLayout>

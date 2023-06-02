@@ -54,4 +54,10 @@ public class Medicine {
     public void setUid(String uid) {
         this.uid = uid;
     }
+
+    @Override
+    public String toString() {
+        return name; // Assuming 'name' is the field that represents the medicine name
+    }
+
 }

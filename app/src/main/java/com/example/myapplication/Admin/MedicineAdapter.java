@@ -111,5 +111,3 @@ public class MedicineAdapter extends BaseAdapter {
 
         return view;
     }}
-
-

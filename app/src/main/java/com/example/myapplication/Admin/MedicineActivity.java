@@ -70,7 +70,6 @@ public class MedicineActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     // Add medicine to Firebase

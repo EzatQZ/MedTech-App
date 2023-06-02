@@ -3,6 +3,7 @@ package com.example.myapplication.Admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ViewMedicine extends AppCompatActivity {
 
@@ -44,7 +46,7 @@ public class ViewMedicine extends AppCompatActivity {
 
         // Initialize medicine list and adapter
         medicineList = new ArrayList<>();
-        medicineAdapter = new MedicineAdapter(this, medicineList, medicineDatabase); // pass the medicineDatabase reference
+        medicineAdapter = new MedicineAdapter((Context) this, (List<Medicine>) medicineList, medicineDatabase); // pass the medicineDatabase reference
         medicineListView.setAdapter(medicineAdapter);
 
         // Retrieve medicines from Firebase

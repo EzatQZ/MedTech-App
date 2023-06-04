@@ -208,10 +208,21 @@ public class DoctorPrescriptions extends AppCompatActivity {
             return;
         }
 
-        double totalPrice = Double.parseDouble(totalPriceTextView.getText().toString());
-
         Prescription prescription = new Prescription(selectedUser);
-        prescription.getSelectedMedicines();
+
+        // Add the selected medicines to the prescription and count their quantities
+        Map<String, Integer> medicineQuantityMap = new HashMap<>();
+        for (Map.Entry<Medicine, Integer> entry : selectedMedicines.entrySet()) {
+            Medicine medicine = entry.getKey();
+            int quantity = entry.getValue();
+
+            prescription.addMedicine(medicine);
+            medicineQuantityMap.put(medicine.getName(), medicineQuantityMap.getOrDefault(medicine.getName(), 0) + quantity);
+        }
+
+        prescription.setMedicineQuantityMap(medicineQuantityMap);
+
+        double totalPrice = Double.parseDouble(totalPriceTextView.getText().toString());
         prescription.setTotalPrice(totalPrice);
 
         // Set the prescription date in "yyyy-MM-dd" format
@@ -228,8 +239,15 @@ public class DoctorPrescriptions extends AppCompatActivity {
 
         prescription.setPrescriptionDate(currentTimeMillis);
 
-        DatabaseReference prescriptionsRef = FirebaseDatabase.getInstance().getReference("prescriptions").push();
+        DatabaseReference prescriptionsRef = FirebaseDatabase.getInstance().getReference("Prescriptions").push();
         prescriptionsRef.setValue(prescription);
+
+        // Display the quantity for each medicine prescribed
+        for (Map.Entry<String, Integer> entry : medicineQuantityMap.entrySet()) {
+            String medicineName = entry.getKey();
+            int quantity = entry.getValue();
+            Toast.makeText(DoctorPrescriptions.this, "Prescribed quantity of " + medicineName + ": " + quantity, Toast.LENGTH_SHORT).show();
+        }
 
         Toast.makeText(DoctorPrescriptions.this, "Prescription added successfully", Toast.LENGTH_SHORT).show();
 
@@ -242,5 +260,4 @@ public class DoctorPrescriptions extends AppCompatActivity {
         medicineSpinner.setSelection(0);
         quantityEditText.setText("");
     }
-
 }

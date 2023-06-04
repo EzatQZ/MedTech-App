@@ -10,32 +10,42 @@ import java.util.Map;
 
 public class Prescription {
     private User user;
-    private List<Medicine> selectedMedicines;
-    private Map<String, Integer> selectedQuantities;
+    private List<Medicine> medicines;
+    private Map<String, Integer> medicineQuantityMap;
     private double totalPrice;
     private long prescriptionDate;
 
+    public Prescription() {
+        // Default constructor required for Firebase
+    }
+
     public Prescription(User user) {
         this.user = user;
-        selectedMedicines = new ArrayList<>();
-        selectedQuantities = new HashMap<>();
+        this.medicines = new ArrayList<>();
+        this.medicineQuantityMap = new HashMap<>();
     }
 
     public User getUser() {
         return user;
     }
 
-    public List<Medicine> getSelectedMedicines() {
-        return selectedMedicines;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void addMedicine(Medicine medicine, int quantity) {
-        selectedMedicines.add(medicine);
-        selectedQuantities.put(medicine.getUid(), quantity);
+    public List<Medicine> getMedicines() {
+        return medicines;
     }
 
-    public Map<String, Integer> getSelectedQuantities() {
-        return selectedQuantities;
+    public void addMedicine(Medicine medicine) {
+        this.medicines.add(medicine);
+        incrementMedicineQuantity(medicine);
+    }
+
+    private void incrementMedicineQuantity(Medicine medicine) {
+        String medicineName = medicine.getName();
+        int quantity = medicineQuantityMap.getOrDefault(medicineName, 0);
+        medicineQuantityMap.put(medicineName, quantity + 1);
     }
 
     public double getTotalPrice() {
@@ -53,6 +63,12 @@ public class Prescription {
     public void setPrescriptionDate(long prescriptionDate) {
         this.prescriptionDate = prescriptionDate;
     }
+
+    public Map<String, Integer> getMedicineQuantityMap() {
+        return medicineQuantityMap;
+    }
+
+    public void setMedicineQuantityMap(Map<String, Integer> medicineQuantityMap) {
+        this.medicineQuantityMap = medicineQuantityMap;
+    }
 }
-
-

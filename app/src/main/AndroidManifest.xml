@@ -51,9 +51,6 @@
             android:name=".Users.ContactDoctor"
             android:exported="false" />
         <activity
-            android:name=".Users.MyAppointments"
-            android:exported="false" />
-        <activity
             android:name=".Users.MyPrescriptions"
             android:exported="false" />
         <activity

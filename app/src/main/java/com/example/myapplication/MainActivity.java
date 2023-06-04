@@ -9,7 +9,6 @@ import android.widget.Button;
 
 import com.example.myapplication.Users.ContactDoctor;
 import com.example.myapplication.Users.MedicineLocator;
-import com.example.myapplication.Users.MyAppointments;
 import com.example.myapplication.Users.MyPrescriptions;
 import com.example.myapplication.Users.MyProfile;
 import com.google.firebase.auth.FirebaseAuth;

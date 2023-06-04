@@ -1,9 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Doctor.DoctorSettings">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/doc"
+        android:layout_width="159dp"
+        android:layout_height="201dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/doc"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/doctor_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Doctor Name:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/doc"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+    <EditText
+        android:id="@+id/doctor_name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/doctor_name_label"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="textPersonName"
+        android:textSize="18sp"
+        android:layout_alignStart="@+id/doctor_name_label"
+        android:layout_alignEnd="@+id/doctor_name_label" />
+
+    <TextView
+        android:id="@+id/specialty_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Specialty:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/doctor_name_edit_text"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_alignStart="@+id/doctor_name_label" />
+
+    <EditText
+        android:id="@+id/specialty_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/specialty_label"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:layout_alignStart="@+id/specialty_label"
+        android:layout_alignEnd="@+id/specialty_label" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/specialty_edit_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Save"
+        android:textSize="20sp" />
+
+</RelativeLayout>

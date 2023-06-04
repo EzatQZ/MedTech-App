@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Prescription {
+
+
+public class Prescription  {
     private User user;
     private List<Medicine> medicines;
     private Map<String, Integer> medicineQuantityMap;

@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Users.PrescriptionDetails"
+            android:exported="false" />
         <activity
             android:name=".Doctor.PatientReviews"
             android:exported="false" />

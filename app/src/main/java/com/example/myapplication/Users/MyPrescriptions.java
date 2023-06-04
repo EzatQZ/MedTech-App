@@ -1,7 +1,10 @@
 package com.example.myapplication.Users;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -50,30 +53,45 @@ public class MyPrescriptions extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Prescription selectedPrescription = prescriptionList.get(position);
                 Map<String, Integer> medicineQuantityMap = selectedPrescription.getMedicineQuantityMap();
+                double totalPrice = selectedPrescription.getTotalPrice();
+
+                // Create a list to store the medicine details
+                ArrayList<String> medicineList = new ArrayList<>();
 
                 // Iterate over the medicine quantity map to get the details
                 for (Map.Entry<String, Integer> entry : medicineQuantityMap.entrySet()) {
                     String medicineName = entry.getKey();
                     int quantity = entry.getValue();
-                    // Handle the prescription details as per your requirement
-                    Toast.makeText(MyPrescriptions.this, "Medicine: " + medicineName + ", Quantity: " + quantity, Toast.LENGTH_SHORT).show();
+                    String details = "Medicine: " + medicineName + ", Quantity: " + quantity;
+                    medicineList.add(details);
                 }
+
+                // Launch the PrescriptionDetailsActivity and pass the prescription details
+                Intent intent = new Intent(MyPrescriptions.this, PrescriptionDetails.class);
+                intent.putStringArrayListExtra("medicineList", medicineList);
+                intent.putExtra("totalPrice", totalPrice);
+                startActivity(intent);
             }
         });
+
     }
 
     private void loadPrescriptions() {
-        String userId = mAuth.getCurrentUser().getUid();
-        DatabaseReference userPrescriptionsRef = prescriptionsRef.child(userId);
+        DatabaseReference prescriptionsRef = FirebaseDatabase.getInstance().getReference("Prescriptions");
+        String currentUserEmail = mAuth.getCurrentUser().getEmail(); // Get the current user's email
 
-        userPrescriptionsRef.addValueEventListener(new ValueEventListener() {
+        prescriptionsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 prescriptionList.clear();
 
                 for (DataSnapshot prescriptionSnapshot : dataSnapshot.getChildren()) {
                     Prescription prescription = prescriptionSnapshot.getValue(Prescription.class);
-                    prescriptionList.add(prescription);
+                    String prescriptionUserEmail = prescription.getUser().getEmail();
+
+                    if (prescriptionUserEmail.equals(currentUserEmail)) {
+                        prescriptionList.add(prescription);
+                    }
                 }
 
                 prescriptionAdapter.notifyDataSetChanged();
@@ -81,8 +99,11 @@ public class MyPrescriptions extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle error
+                Log.e("LoadPrescriptions", "Error: " + databaseError.getMessage());
             }
         });
     }
+
+
 }
+

@@ -37,7 +37,7 @@ public class PrescriptionDetails extends AppCompatActivity {
             // Set the medicine list and total price in the ListView and TextView
             medicineAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, medicineList);
             medicineListView.setAdapter(medicineAdapter);
-            totalPriceTextView.setText(String.format(Locale.getDefault(), "%.2f", totalPrice));
+            totalPriceTextView.setText("Your total is: $" + String.format(Locale.getDefault(), "%.2f", totalPrice));
         }
     }
 }

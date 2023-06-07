@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.Users.ContactDoctor;
-import com.example.myapplication.Users.MedicineLocator;
+import com.example.myapplication.Users.MapsActivity;
 import com.example.myapplication.Users.MyPrescriptions;
 import com.example.myapplication.Users.MyProfile;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         medicineLocatorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MedicineLocator.class);
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(intent);
             }
         });

@@ -17,13 +17,26 @@ public class Pharmacy {
     private String name;
     private String address;
     private String manager;
+    private double latitude;
+    private double longitude;
     private List<String> inventory;
 
     public Pharmacy() {
         // Required empty constructor
     }
 
-    public Pharmacy(String uid, String name, String address, String manager) {
+    public Pharmacy(String uid, String name, String address, String manager, double latitude, double longitude) {
+        this.uid = uid;
+        this.name = name;
+        this.address = address;
+        this.manager = manager;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.inventory = new ArrayList<>();
+    }
+
+    public Pharmacy(String uid, String name, String address, String manager)
+    {
         this.uid = uid;
         this.name = name;
         this.address = address;
@@ -63,6 +76,22 @@ public class Pharmacy {
         this.manager = manager;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
     public List<String> getInventory() {
         return inventory;
     }
@@ -79,14 +108,3 @@ public class Pharmacy {
         inventory.addAll(medicineIds);
     }
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myapplication.Users.ContactDoctor;
 import com.example.myapplication.Users.MapsActivity;
+import com.example.myapplication.Users.MedicineLocator;
 import com.example.myapplication.Users.MyPrescriptions;
 import com.example.myapplication.Users.MyProfile;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button myProfileButton;
     private Button medicineLocatorButton;
-    private Button contactADoctorButton;
+
     private Button logoutButton;
 
     private FirebaseAuth mAuth;
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         myPrescriptionsButton = findViewById(R.id.my_prescriptions_button);
         myProfileButton = findViewById(R.id.my_profile_button);
         medicineLocatorButton = findViewById(R.id.medicine_locator_button);
-        contactADoctorButton = findViewById(R.id.contact_a_doctor_button);
         logoutButton = findViewById(R.id.logout_button);
 
         // Set click listeners for each button
@@ -61,18 +60,11 @@ public class MainActivity extends AppCompatActivity {
         medicineLocatorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                Intent intent = new Intent(MainActivity.this, MedicineLocator.class);
                 startActivity(intent);
             }
         });
 
-        contactADoctorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ContactDoctor.class);
-                startActivity(intent);
-            }
-        });
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

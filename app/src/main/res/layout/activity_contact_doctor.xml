@@ -6,15 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".Users.MyProfile">
+    tools:context=".Users.ContactDoctor">
 
     <ImageView
-        android:id="@+id/user_icon_image_view"
+        android:id="@+id/doctor_icon_image_view"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:src="@drawable/doctor" />
-
 
 </RelativeLayout>

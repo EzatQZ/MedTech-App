@@ -26,36 +26,10 @@
         android:padding="16dp" />
 
     <Button
-        android:id="@+id/patient_inquiries_button"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/prescription_button"
-        android:layout_marginTop="28dp"
-        android:layout_centerHorizontal="true"
-        android:text="Patient Inquiries"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_button"
-        android:padding="16dp" />
-
-    <Button
-        android:id="@+id/reviews_button"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/patient_inquiries_button"
-        android:layout_marginTop="28dp"
-        android:layout_centerHorizontal="true"
-        android:text="Reviews"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_button"
-        android:padding="16dp" />
-
-    <Button
         android:id="@+id/settings_button"
         android:layout_width="200dp"
         android:layout_height="100dp"
-        android:layout_below="@id/reviews_button"
+        android:layout_below="@id/prescription_button"
         android:layout_marginTop="28dp"
         android:layout_centerHorizontal="true"
         android:text="Settings"
@@ -63,21 +37,17 @@
         android:textColor="@color/white"
         android:background="@drawable/rounded_button"
         android:padding="16dp" />
-
     <Button
         android:id="@+id/logout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="-3dp"
-        android:background="@drawable/rounded_button"
-        android:padding="16dp"
-        android:text="Logout"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/settings_button"
+        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:text="logout"
+        android:textSize="20sp"
         android:textColor="@color/white"
-        android:textSize="12sp" />
+        android:background="@drawable/rounded_button"
+        android:padding="16dp" />
 
 </RelativeLayout>

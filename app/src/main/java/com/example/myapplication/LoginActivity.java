@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.example.myapplication.Admin.Admin;
 import com.example.myapplication.Connecting.CreateAccountActivity;
 import com.example.myapplication.Connecting.ForgotPasswordActivity;
-import com.example.myapplication.Doctor.doctor;
+import com.example.myapplication.Doctor.DoctorActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -73,13 +73,13 @@ public class LoginActivity extends AppCompatActivity {
                             } else if (email.equals("ozzs@gmail.com") && password.equals("admin2")) {
                                 startActivity(new Intent(LoginActivity.this, Admin.class));
                             } else if (email.equals("james@gmail.com") && password.equals("james12345")) {
-                                startActivity(new Intent(LoginActivity.this, doctor.class));
+                                startActivity(new Intent(LoginActivity.this, DoctorActivity.class));
                             } else if (email.equals("jackk@gmail.com") && password.equals("jackk12345")) {
-                                startActivity(new Intent(LoginActivity.this, doctor.class));
+                                startActivity(new Intent(LoginActivity.this, DoctorActivity.class));
                             } else if (email.equals("thomas@gmail.com") && password.equals("thomas12345")) {
-                                startActivity(new Intent(LoginActivity.this, doctor.class));
+                                startActivity(new Intent(LoginActivity.this, DoctorActivity.class));
                             } else if (email.equals("reidd@gmail.com") && password.equals("reidd12345")) {
-                                startActivity(new Intent(LoginActivity.this, doctor.class));
+                                startActivity(new Intent(LoginActivity.this, DoctorActivity.class));
                             } else {
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             }

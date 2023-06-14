@@ -14,17 +14,12 @@ import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class doctor extends AppCompatActivity {
+public class DoctorActivity extends AppCompatActivity {
 
     private Button prescriptionButton;
-    private Button patientInquiriesButton;
     private Button settingsButton;
     private Button logoutButton;
-
-    private Button reviewsButton;
-
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +28,10 @@ public class doctor extends AppCompatActivity {
 
         // Initialize buttons
         prescriptionButton = findViewById(R.id.prescription_button);
-        patientInquiriesButton = findViewById(R.id.patient_inquiries_button);
+
         settingsButton = findViewById(R.id.settings_button);
         logoutButton = findViewById(R.id.logout_button);
-        reviewsButton=findViewById(R.id.reviews_button);
+
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -44,30 +39,16 @@ public class doctor extends AppCompatActivity {
         prescriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(doctor.this, DoctorPrescriptions.class);
+                Intent intent = new Intent(DoctorActivity.this, DoctorPrescriptions.class);
                 startActivity(intent);
             }
         });
 
-        patientInquiriesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(doctor.this, PatientInq.class);
-                startActivity(intent);
-            }
-        });
-        reviewsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(doctor.this, PatientReviews.class);
-                startActivity(intent);
-            }
-        });
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(doctor.this, DoctorSettings.class);
+                Intent intent = new Intent(DoctorActivity.this, DoctorSettings.class);
                 startActivity(intent);
             }
         });
@@ -76,7 +57,7 @@ public class doctor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
-                Intent intent = new Intent(doctor.this, LoginActivity.class);
+                Intent intent = new Intent(DoctorActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

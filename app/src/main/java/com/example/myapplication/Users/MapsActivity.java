@@ -294,21 +294,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onProviderEnabled(String provider) {
-        // Empty implementation
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        // Empty implementation
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        // Empty implementation
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         locationManager.removeUpdates(this);

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Users;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,12 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myapplication.Users.ChosenAppointments;
-import com.example.myapplication.Users.MapsActivity;
-import com.example.myapplication.Users.MedicineLocator;
-import com.example.myapplication.Users.MyPrescriptions;
-import com.example.myapplication.Users.MyProfile;
-import com.example.myapplication.Users.UserAppointmentsActivity;
+import com.example.myapplication.Connecting.LoginActivity;
+import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {

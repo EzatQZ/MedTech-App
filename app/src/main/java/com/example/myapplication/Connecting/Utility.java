@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Connecting;
 
 import android.content.Context;
 import android.widget.Toast;

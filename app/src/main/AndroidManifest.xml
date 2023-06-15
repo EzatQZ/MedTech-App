@@ -82,9 +82,6 @@
             android:name=".Admin.Admin"
             android:exported="false" />
         <activity
-            android:name=".Users.MedicineLocator"
-            android:exported="false" />
-        <activity
             android:name=".Users.MyPrescriptions"
             android:exported="false" />
         <activity
@@ -97,13 +94,13 @@
             android:name=".Connecting.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Connecting.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".Connecting.CreateAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Users.MainActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"

@@ -47,7 +47,7 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
             holder.textStatus.setText("Chosen");
             holder.chooseButton.setEnabled(false);
         } else {
-            holder.textStatus.setText("Not chosen");
+            holder.textStatus.setText("Available");
             holder.chooseButton.setEnabled(true);
             holder.chooseButton.setOnClickListener(v -> {
                 if (chooseAppointmentClickListener != null) {

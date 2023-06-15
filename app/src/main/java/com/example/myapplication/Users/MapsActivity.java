@@ -179,26 +179,31 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (userMarker != null) {
             LatLng userLocation = userMarker.getPosition();
-            List<String> prescriptionMedicineNames = loadPrescriptions(); // Retrieve prescription medicine names from the user or the appropriate source
+            List<String> prescriptionMedicineNames = loadPrescriptions();
             List<Pharmacy> pharmaciesWithMedicines = getPharmaciesWithMedicines(prescriptionMedicineNames);
 
             if (!pharmaciesWithMedicines.isEmpty()) {
                 Pharmacy nearestPharmacy = getNearestPharmacy(userLocation, pharmaciesWithMedicines);
 
                 if (nearestPharmacy != null) {
-                    Marker nearestMarker = googleMap.addMarker(new MarkerOptions()
+                    MarkerOptions nearestMarkerOptions = new MarkerOptions()
                             .position(new LatLng(nearestPharmacy.getLatitude(), nearestPharmacy.getLongitude()))
                             .title(nearestPharmacy.getName())
                             .snippet(getInventoryString(nearestPharmacy.getInventory()))
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    Marker nearestMarker = googleMap.addMarker(nearestMarkerOptions);
+
+                    // Set the user marker color to blue
+                    userMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
 
                     for (Pharmacy pharmacy : pharmacies.values()) {
                         if (pharmacy != nearestPharmacy) {
-                            googleMap.addMarker(new MarkerOptions()
+                            MarkerOptions markerOptions = new MarkerOptions()
                                     .position(new LatLng(pharmacy.getLatitude(), pharmacy.getLongitude()))
                                     .title(pharmacy.getName())
                                     .snippet(getInventoryString(pharmacy.getInventory()))
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                            googleMap.addMarker(markerOptions);
                         }
                     }
 
@@ -208,6 +213,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Toast.makeText(this, "No pharmacies with all the required medicines found.", Toast.LENGTH_SHORT).show();
             }
         }
+
 
     }
 

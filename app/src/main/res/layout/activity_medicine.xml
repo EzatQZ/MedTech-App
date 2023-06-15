@@ -78,21 +78,12 @@
         android:layout_marginTop="16dp"
         android:hint="Price"
         android:inputType="numberDecimal" />
-    <EditText
-        android:id="@+id/medicine_uid_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/medicine_price_input"
-        android:layout_marginTop="16dp"
-        android:hint="id"
-        android:inputType="numberDecimal" />
-
 
     <Button
         android:id="@+id/add_medicine_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/medicine_uid_input"
+        android:layout_below="@+id/medicine_price_input"
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button"
         android:text="Add Medicine"

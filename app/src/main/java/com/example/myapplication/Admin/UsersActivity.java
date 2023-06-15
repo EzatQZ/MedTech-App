@@ -2,6 +2,7 @@ package com.example.myapplication.Admin;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -127,6 +128,10 @@ public class UsersActivity extends AppCompatActivity {
 
                         // Update user list
                         getUserList();
+                        // Redirect to Admin activity
+                        Intent intent = new Intent(UsersActivity.this, Admin.class);
+                        startActivity(intent);
+                        finish();
                     }
                 });
 

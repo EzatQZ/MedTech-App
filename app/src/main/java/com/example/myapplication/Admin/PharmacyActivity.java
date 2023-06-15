@@ -153,12 +153,8 @@ public class PharmacyActivity extends AppCompatActivity {
                 if (medicineList.isEmpty()) {
                     Toast.makeText(PharmacyActivity.this, "No medicines found in database", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Update selected medicine names to the first medicine in the list
+                    // Update selected medicine names (remove previous selection)
                     selectedMedicineNames.clear();
-                    String selectedMedicine = medicineList.get(0).getName();
-                    selectedMedicineNames.add(selectedMedicine);
-                    Toast.makeText(PharmacyActivity.this, "Added " + selectedMedicine + " to selected medicines", Toast.LENGTH_SHORT).show();
-                    medicineSpinner.setSelection(0);
                 }
             }
 
@@ -168,6 +164,7 @@ public class PharmacyActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void clearForm() {
         pharmacyNameEditText.getText().clear();

@@ -15,23 +15,22 @@ import com.example.myapplication.R;
 
 import java.util.List;
 
-public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapter.AppointmentViewHolder> {
+public class ChosenAppointmentsAdapter extends RecyclerView.Adapter<ChosenAppointmentsAdapter.AppointmentViewHolder> {
 
     private List<Appointment> appointments;
     private Context context;
-    private OnChooseAppointmentClickListener chooseAppointmentClickListener;
+    private OnCancelAppointmentClickListener cancelAppointmentClickListener;
 
-    public AppointmentsAdapter(List<Appointment> appointments, Context context, OnChooseAppointmentClickListener listener) {
+    public ChosenAppointmentsAdapter(List<Appointment> appointments, Context context, OnCancelAppointmentClickListener listener) {
         this.appointments = appointments;
         this.context = context;
-        this.chooseAppointmentClickListener = listener;
+        this.cancelAppointmentClickListener = listener;
     }
-
 
     @NonNull
     @Override
     public AppointmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.appointment_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.chosenappointments_item, parent, false);
         return new AppointmentViewHolder(view);
     }
 
@@ -43,22 +42,12 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
         holder.textTime.setText(appointment.getTime());
         holder.textDoctorName.setText(appointment.getName());
 
-        if (appointment.isChosen()) {
-            holder.textStatus.setText("Chosen");
-            holder.chooseButton.setEnabled(false);
-        } else {
-            holder.textStatus.setText("Not chosen");
-            holder.chooseButton.setEnabled(true);
-            holder.chooseButton.setOnClickListener(v -> {
-                if (chooseAppointmentClickListener != null) {
-                    chooseAppointmentClickListener.onChooseAppointmentClick(appointment);
-                    holder.chooseButton.setEnabled(false); // Disable the button after clicking
-                }
-            });
-        }
+        holder.cancelButton.setOnClickListener(v -> {
+            if (cancelAppointmentClickListener != null) {
+                cancelAppointmentClickListener.onCancelAppointmentClick(appointment);
+            }
+        });
     }
-
-
 
     @Override
     public int getItemCount() {
@@ -66,8 +55,8 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
     }
 
     static class AppointmentViewHolder extends RecyclerView.ViewHolder {
-        TextView textDate, textTime, textDoctorName, textStatus;
-        Button chooseButton;
+        TextView textDate, textTime, textDoctorName;
+        Button cancelButton;
 
         public AppointmentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,12 +64,11 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
             textDate = itemView.findViewById(R.id.text_date);
             textTime = itemView.findViewById(R.id.text_time);
             textDoctorName = itemView.findViewById(R.id.text_doctor_name);
-            textStatus = itemView.findViewById(R.id.text_status);
-            chooseButton = itemView.findViewById(R.id.choose_button);
+            cancelButton = itemView.findViewById(R.id.cancel_button);
         }
     }
 
-    public interface OnChooseAppointmentClickListener {
-        void onChooseAppointmentClick(Appointment appointment);
+    public interface OnCancelAppointmentClickListener {
+        void onCancelAppointmentClick(Appointment appointment);
     }
 }

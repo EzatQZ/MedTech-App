@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.Users.ChosenAppointments;
 import com.example.myapplication.Users.MapsActivity;
 import com.example.myapplication.Users.MedicineLocator;
 import com.example.myapplication.Users.MyPrescriptions;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button myPrescriptionsButton;
 
     private Button myProfileButton;
-    private Button medicineLocatorButton;
+    private Button MyAppointments;
     private Button appointmentsButton;
 
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize the buttons
         myPrescriptionsButton = findViewById(R.id.my_prescriptions_button);
         myProfileButton = findViewById(R.id.my_profile_button);
-        medicineLocatorButton = findViewById(R.id.medicine_locator_button);
+        MyAppointments=findViewById(R.id.MyAppointments);
         logoutButton = findViewById(R.id.logout_button);
         appointmentsButton=findViewById(R.id.Appointments_button);
         // Set click listeners for each button
@@ -60,17 +61,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        medicineLocatorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MedicineLocator.class);
-                startActivity(intent);
-            }
-        });
         appointmentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, UserAppointmentsActivity.class);
+                startActivity(intent);
+            }
+        });
+        MyAppointments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ChosenAppointments.class);
                 startActivity(intent);
             }
         });

@@ -47,20 +47,20 @@
 
 
         <Button
-            android:id="@+id/medicine_locator_button"
+            android:id="@+id/Appointments_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="medicine locator"
+            android:text="Choose Appointments"
             android:textColor="@color/white"
             android:background="@drawable/rounded_button"
             android:textSize="20sp"
             android:padding="16dp"
             android:layout_margin="5dp" />
         <Button
-            android:id="@+id/Appointments_button"
+            android:id="@+id/MyAppointments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Appointments"
+            android:text="My Appointments"
             android:textColor="@color/white"
             android:background="@drawable/rounded_button"
             android:textSize="20sp"

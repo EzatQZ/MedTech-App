@@ -20,15 +20,31 @@
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintHorizontal_bias="0.5" />
 
+    <TextView
+        android:id="@+id/text_view_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome doctor, Please add an appointment"
+        android:textSize="18sp"
+    android:textStyle="bold"
+    app:layout_constraintTop_toBottomOf="@id/doctor_logo"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginTop="16dp"
+    android:layout_marginStart="16dp" />
+
+
     <EditText
         android:id="@+id/edit_text_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Date"
-        app:layout_constraintTop_toBottomOf="@id/doctor_logo"
+        android:clickable="true"
+        android:focusable="false"
+        app:layout_constraintTop_toBottomOf="@id/text_view_welcome"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp" />
+
 
     <EditText
         android:id="@+id/edit_text_time"

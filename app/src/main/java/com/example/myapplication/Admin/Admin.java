@@ -17,7 +17,7 @@ public class Admin extends AppCompatActivity {
     private Button pharmacyButton;
     private Button usersButton;
     private Button logoutButton;
-
+    private Button statisticsButton;
     private FirebaseAuth mAuth;
 
     @Override
@@ -32,6 +32,7 @@ public class Admin extends AppCompatActivity {
         pharmacyButton = findViewById(R.id.pharmacy_button);
         usersButton = findViewById(R.id.users_button);
         logoutButton = findViewById(R.id.logout_button);
+        statisticsButton=findViewById(R.id.statistics_button);
 
         // Set click listeners for each button
         medicineButton.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,15 @@ public class Admin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        statisticsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin.this, Stats.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

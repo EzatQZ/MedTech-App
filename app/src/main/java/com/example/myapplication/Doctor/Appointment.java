@@ -40,10 +40,19 @@ public class Appointment {
     }
 
     public String getTime() {
-        return time;
+        // Convert the time to "HH:mm" format before returning
+        String[] timeComponents = time.split("-");
+        if (timeComponents.length == 2) {
+            String hour = timeComponents[0];
+            String minute = timeComponents[1];
+            return String.format("%s:%s", hour, minute);
+        } else {
+            return time; // Return as is, it's already in "HH:mm" format
+        }
     }
 
     public void setTime(String time) {
+        // Save the time in "HH:mm" format
         this.time = time;
     }
 

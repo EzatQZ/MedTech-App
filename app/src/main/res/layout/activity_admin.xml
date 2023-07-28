@@ -54,6 +54,18 @@
         android:background="@drawable/rounded_button"
         android:padding="16dp"/>
     <Button
+        android:id="@+id/statistics_button"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/users_button"
+        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:text="Statistics"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button"
+        android:padding="16dp"/>
+    <Button
         android:id="@+id/logout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

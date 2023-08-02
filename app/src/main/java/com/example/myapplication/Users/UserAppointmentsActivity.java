@@ -86,21 +86,17 @@ public class UserAppointmentsActivity extends AppCompatActivity implements Appoi
 
     private boolean isAppointmentClashing(Appointment newAppointment) {
         for (Appointment existingAppointment : appointments) {
-            if (existingAppointment.isChosen()) {
+            if (existingAppointment.isChosen() && currentUserId.equals(existingAppointment.getUserID())) {
                 if (existingAppointment.getDate().equals(newAppointment.getDate())
                         && existingAppointment.getTime().equals(newAppointment.getTime())) {
                     // Appointments have the same date and time, so there is a clash
                     return true;
-                } else {
-                    // Check if the appointments are within a 30-minute range
-                    if (areAppointmentsWithinRange(existingAppointment, newAppointment)) {
-                        return true;
-                    }
                 }
             }
         }
         return false;
     }
+
 
     private boolean areAppointmentsWithinRange(Appointment appointment1, Appointment appointment2) {
         String[] time1 = appointment1.getTime().split(":");
